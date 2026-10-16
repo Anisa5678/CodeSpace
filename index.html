@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeSpace Academy | Beranda</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f6f8f3;
+    color: #17251c;
+    line-height: 1.6;
+}
+
+header {
+    background: #ffffff;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 12px #0000000a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #244b31;
+}
+
+.logo span {
+    color: #79a94c;
+}
+
+nav {
+    display: flex;
+    gap: 10px;
+}
+
+nav button {
+    padding: 10px 17px;
+    border: none;
+    border-radius: 25px;
+    background: transparent;
+    color: #244b31;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+nav button:hover,
+nav button.active {
+    background: #244b31;
+    color: white;
+}
+
+.hero {
+    background: linear-gradient(120deg, #183c29, #4f7d43);
+    color: white;
+    padding: 75px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 35px;
+}
+
+.hero-text {
+    max-width: 570px;
+}
+
+.hero small {
+    color: #c6f59b;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 55px);
+    line-height: 1.15;
+    margin: 15px 0;
+}
+
+.hero p {
+    color: #e2eee2;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 25px;
+    background: #c5f28a;
+    color: #183c29;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #aee76c;
+}
+
+.hero img {
+    width: 42%;
+    max-width: 450px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px #0003;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 55px 25px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.judul {
+    margin-bottom: 30px;
+}
+
+.judul small {
+    color: #679441;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.judul h2 {
+    font-size: 32px;
+    margin: 7px 0;
+}
+
+.judul p {
+    color: #69756b;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px #0000000c;
+    transition: .3s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.card img {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 22px;
+}
+
+.card h3 {
+    margin-bottom: 8px;
+    color: #244b31;
+}
+
+.card p {
+    color: #69756b;
+    font-size: 14px;
+}
+
+.label {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #e9f4df;
+    color: #426e2e;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.register-layout {
+    display: grid;
+    grid-template-columns: 1.4fr .8fr;
+    gap: 25px;
+    align-items: start;
+}
+
+form {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px #0000000c;
+}
+
+form h3 {
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.form-desc {
+    color: #69756b;
+    margin-bottom: 22px;
+    font-size: 14px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.field {
+    min-width: 0;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input:not([type="radio"]),
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #dce4d8;
+    border-radius: 9px;
+    background: #fbfcf9;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #679441;
+    box-shadow: 0 0 0 3px #67944120;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: normal;
+    margin: 8px 0;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn-reset {
+    background: #edf0e9;
+    color: #244b31;
+}
+
+.info {
+    background: #183c29;
+    color: white;
+    padding: 28px;
+    border-radius: 18px;
+}
+
+.info h3 {
+    font-size: 25px;
+    margin-bottom: 12px;
+}
+
+.info p {
+    color: #d7e5d7;
+    font-size: 14px;
+}
+
+.info ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.info li {
+    margin: 14px 0;
+    font-size: 14px;
+}
+
+.info li::before {
+    content: "✓";
+    color: #c5f28a;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#hasil {
+    display: none;
+    background: white;
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #cde5b8;
+    box-shadow: 0 8px 25px #0000000c;
+}
+
+#hasil h3 {
+    color: #386d30;
+    margin-bottom: 15px;
+}
+
+.data-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #edf0e9;
+    overflow-wrap: anywhere;
+}
+
+.data-item strong {
+    display: block;
+    font-size: 13px;
+    color: #69756b;
+}
+
+.data-item span {
+    display: block;
+    margin-top: 3px;
+}
+
+footer {
+    background: #183c29;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 14px;
+}
+
+@media (max-width: 800px) {
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 50px 7%;
+    }
+
+    .hero img {
+        width: 100%;
+        max-width: 100%;
+        height: 250px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .register-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 15px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav button {
+        padding: 9px 12px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field.full {
+        grid-column: auto;
+    }
+
+    form {
+        padding: 20px;
+    }
+
+    .judul h2 {
+        font-size: 27px;
+    }
+}
+
+nav { align-items:center; }
+.nav-link { display:inline-block; padding:10px 17px; border-radius:25px; color:#244b31; text-decoration:none; font-weight:bold; }
+.nav-link:hover, .nav-link.active { background:#244b31; color:white; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">&lt;/&gt; CodeSpace <span>Academy</span></div>
+  <nav>
+    <a class="nav-link" href="index.html" class="nav-link active">Beranda</a>
+    <a class="nav-link" href="gallery.html">Gallery</a>
+    <a class="nav-link" href="pendaftaran.html">Pendaftaran</a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="hero-text">
+    <small> Anisa Fitriani</small>
+    <h1>Ide Besar Dimulai dari Coding.</h1>
+    <p>Belajar pemrograman dengan cara yang menyenangkan, praktik langsung, dan kembangkan kreativitas digitalmu bersama CodeSpace Academy.</p>
+    <a class="btn" href="pendaftaran.html" style="text-decoration:none">Daftar Sekarang ↗</a>
+    <a class="btn" href="gallery.html" style="text-decoration:none; margin-left:8px">Lihat Gallery</a>
+  </div>
+  <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=900&q=80" alt="Kegiatan belajar bersama">
+</section>
+<main class="container">
+  <div class="judul"><small>WELCOME TO CODESPACE</small><h2>Belajar, Berlatih, dan Berkarya</h2><p>Pilih menu Gallery untuk melihat kegiatan pelatihan atau Pendaftaran untuk mengisi formulir peserta.</p></div>
+</main>
+<footer><p><strong>CodeSpace Academy</strong></p><p>Anisa Fitriani © 2026</p></footer>
+
+</body>
+</html>
